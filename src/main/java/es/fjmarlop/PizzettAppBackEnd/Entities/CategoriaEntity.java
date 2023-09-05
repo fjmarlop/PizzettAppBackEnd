@@ -1,5 +1,6 @@
 package es.fjmarlop.PizzettAppBackEnd.Entities;
 
+import es.fjmarlop.PizzettAppBackEnd.Entities.enums.ECategoria;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -12,17 +13,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "Ingredientes")
-public class IngredientsEntity {
+@Table(name = "Categorias")
+public class CategoriaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id_categoria;
 
     @NotBlank
-    @Column(unique = true)
-    private String ingredientName;
-
-
+    @Enumerated(EnumType.STRING)
+    private ECategoria nombre_categoria;
 
 }

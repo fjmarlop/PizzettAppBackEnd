@@ -1,8 +1,7 @@
 package es.fjmarlop.PizzettAppBackEnd.Controllers;
 
-
-import es.fjmarlop.PizzettAppBackEnd.Models.PizzaModel;
-import es.fjmarlop.PizzettAppBackEnd.Services.PizzaService;
+import es.fjmarlop.PizzettAppBackEnd.Models.ProductoModel;
+import es.fjmarlop.PizzettAppBackEnd.Services.ProductoService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +13,14 @@ import java.util.List;
 @RestController
 @Data
 @AllArgsConstructor
-public class PizzaController {
+public class ProductoController {
 
     @Autowired
-    private final PizzaService pizzaService;
+    private final ProductoService productoService;
 
-    @GetMapping("/pizzas")
-    public List<PizzaModel> getAllPizzas() {
-        return pizzaService.getAllPizzas();
+
+    @GetMapping("/productos")
+    public List<ProductoModel> getAllProductos(){
+        return productoService.getAllProductos();
     }
-
 }

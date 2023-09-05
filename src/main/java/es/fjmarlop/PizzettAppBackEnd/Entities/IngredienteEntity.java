@@ -12,14 +12,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "TamanioPizza")
-public class TamanioPizzaEntity {
+@Table(name = "Ingredientes")
+public class IngredienteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long Id;
 
     @NotBlank
-    private String tamanioPizza;
+    @Column(unique = true)
+    private String ingredientName;
+
+
 
 }

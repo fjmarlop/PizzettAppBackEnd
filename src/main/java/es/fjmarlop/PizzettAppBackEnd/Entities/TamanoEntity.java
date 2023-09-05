@@ -1,7 +1,8 @@
 package es.fjmarlop.PizzettAppBackEnd.Entities;
 
+import es.fjmarlop.PizzettAppBackEnd.Entities.enums.ETamano;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,21 +13,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "Pizza_TamanioPizza")
-public class PizzaTamanioPizzaEntity {
+@Table(name = "Tamano")
+public class TamanoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "pizzaId")
-    private PizzaEntity pizza;
+    @NotBlank
+    @Enumerated(EnumType.STRING)
+    private ETamano tamano;
 
-    @ManyToOne
-    @JoinColumn(name = "tamanioPizzaId")
-    private TamanioPizzaEntity tamanioPizza;
+    private Double pvp;
 
-    @NotNull
-    private Float precio;
 }
