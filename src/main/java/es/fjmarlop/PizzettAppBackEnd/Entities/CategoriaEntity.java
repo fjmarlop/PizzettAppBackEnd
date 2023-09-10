@@ -21,7 +21,6 @@ public class CategoriaEntity {
     private Long id_categoria;
 
     @NotBlank
-    @Enumerated(EnumType.STRING)
-    private ECategoria nombre_categoria;
+    private String nombre_categoria;
 
 }
