@@ -47,14 +47,12 @@ public class ProductoService {
      * */
     public List<ProductoModel> getAllProductos() {
         List<ProductoEntity> productos = (List<ProductoEntity>) productoRepository.findAll();
-
         return Mapper(productos);
     }
 
 
     public List<ProductoModel> getAllProductosPorCategoria(String categoria) {
         List<ProductoEntity> productos = productoRepository.getAllProductosPorCategoria(categoria);
-
         return Mapper(productos);
     }
 

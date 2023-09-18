@@ -35,12 +35,15 @@ public class ProductoController {
      *    Cuándo el listado esté vacío, retorna 404 not found.
      * */
     @GetMapping("/{cat}")
-    public ResponseEntity<?> getAllPizzas(@PathVariable String cat){
+    public ResponseEntity<?> getAllProductosByCategoria(@PathVariable String cat){
         List<ProductoModel> list = productoService.getAllProductosPorCategoria(cat);
-
         return (list.isEmpty()) ? ResponseEntity.notFound().build() : ResponseEntity.of(Optional.of(list));
     }
 
+    @GetMapping("/productos")
+    public ResponseEntity<?> getAllProductos(){
+        return ResponseEntity.of(Optional.of(productoService.getAllProductos()));
+    }
 
 
 }
