@@ -45,5 +45,8 @@ public class ProductoController {
         return ResponseEntity.of(Optional.of(productoService.getAllProductos()));
     }
 
-
+    @GetMapping("/recomendados")
+    public ResponseEntity<?> getProductosParaRecomendados(){
+        return ResponseEntity.of(Optional.of(productoService.getProductosParaRecomendados()));
+    }
 }
