@@ -80,11 +80,6 @@
 			<artifactId>modelmapper</artifactId>
 			<version>3.1.1</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.shared</groupId>
-			<artifactId>maven-filtering</artifactId>
-			<version>3.3.1</version>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -101,11 +96,6 @@
 						</exclude>
 					</excludes>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.3.1</version>
 			</plugin>
 		</plugins>
 	</build>
