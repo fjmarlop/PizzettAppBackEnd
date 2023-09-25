@@ -1,5 +1,5 @@
-INSERT INTO `qarjboij_PizzApp`.`ingredientes`
-(`ingredient_name`)
+INSERT INTO ingredientes
+(ingredient_name)
 VALUES
     ('Tomate'),('Nata'),('Mozzarella'),('Orégano'),('Queso Philadelphia'),('Bacon'),
     ('Champiñon'),('Olivas'),('Salami'),('Salchichas'),('Pepperoni'),('Serrano'),
@@ -11,16 +11,16 @@ VALUES
     ('Bizcochos'),('Café'),('Mascarpone'),('Azucar'),('Cacao'),
     ('Leche'),('Frutos rojos'),('Chocolate'),('Pistachos'),('Marsala'),('Albahaca');
 
-INSERT INTO `qarjboij_PizzApp`.`categorias`
-(`nombre_categoria`)
+INSERT INTO categorias
+(nombre_categoria)
 VALUES
     ('Ensaladas'), ('Pizzas'), ('Pastas'),
     ('Gratinados'), ('Postres'), ('Bebidas');
 
-INSERT INTO `qarjboij_PizzApp`.`productos`
-(`descripcion`,
- `imagen_producto`,
- `nombre_producto`)
+INSERT INTO productos
+(descripcion,
+ imagen_producto,
+ nombre_producto)
 VALUES
     ('Deliciosa pizza casera elaborada con masa madre, cocida en horno de leña e ingredientes frescos. Con base de ','https://i.postimg.cc/dVVm8cLL/suprema.jpg','Suprema'),
     ('Deliciosa pizza casera elaborada con masa madre, cocida en horno de leña e ingredientes frescos. Con base de ','https://i.postimg.cc/5tG34K9j/pepperoni.jpg','Al Pepperoni'),
@@ -46,9 +46,9 @@ VALUES
     ('Los Cannoli Sicilianos son pequeñas obras de arte dulces. Nuestros cannoli presentan una crujiente cáscara de masa frita rellena de una mezcla de ricotta fresca, azúcar glas y trozos de chocolate. Se espolvorean con azúcar glas y pistachos picados','https://i.postimg.cc/LXYxjKQz/cannoli.jpg','Cannoli Sicilianos'),
     ('Nuestro Zabaione es una experiencia culinaria italiana única. Preparado con yemas de huevo, azúcar y el toque distintivo del vino Marsala, esta crema espumosa se sirve en su punto perfecto de dulzura y se acompaña de frutas frescas de temporada.','https://i.postimg.cc/nzBvHHww/zabaione.jpg','Zabaione');
 
-INSERT INTO `qarjboij_PizzApp`.`producto_ingrediente`
-(`producto_id`,
- `ingrediente_id`)
+INSERT INTO producto_ingrediente
+(producto_id,
+ ingrediente_id)
 VALUES
     (1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),
     (2,1),(2,4),(2,3),(2,11),(2,8),
@@ -74,16 +74,16 @@ VALUES
 	(22,28),(22,40),(22,44),(22,45),
 	(23,13),(23,40),(23,46);
 
-INSERT INTO `qarjboij_PizzApp`.`tamano`
-(`tamano`,`pvp`)
+INSERT INTO tamano
+(tamano,pvp)
 VALUES
     ('normal',6.50),('mediana',9.60),('familiar',16.50),
     ('normal',5.90),('mediana',8.90),('familiar',16.00),
     ('único', 8.90),('único',12.90),('único', 17.90),('único', 7.80);
 
-INSERT INTO `qarjboij_PizzApp`.`producto_tamano`
-(`producto_id`,
- `tamano_id`)
+INSERT INTO producto_tamano
+(producto_id,
+ tamano_id)
 VALUES
     (1,1),(1,2),(1,3),
     (2,4),(2,5),(2,6),
@@ -96,9 +96,9 @@ VALUES
     (16,9),(17,9),(18,9),(19,9),
     (20,10),(21,10),(22,10),(23,10);
 
-INSERT INTO `qarjboij_PizzApp`.`producto_categoria`
-(`productoid`,
- `categoriaid`)
+INSERT INTO producto_categoria
+(productoid,
+ categoriaid)
 VALUES
     (1,2),(2,2),(3,2),(4,2),(5,2),(6,2),
     (7,1),(8,1),(9,1),(10,1),

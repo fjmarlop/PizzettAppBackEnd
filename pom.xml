@@ -11,6 +11,7 @@
 	<groupId>es.fjmarlop</groupId>
 	<artifactId>PizzettAppBackEnd</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>PizzettAppBackEnd</name>
 	<description>BackEnd para el proyecto PizzettApp</description>
 	<properties>
