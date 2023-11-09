@@ -12,7 +12,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/pizzettApp/productos").permitAll();
+                    auth.requestMatchers("/pizzettApp/empleado/{email}").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .oauth2ResourceServer().jwt();

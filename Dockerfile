@@ -1,6 +1,5 @@
-FROM openjdk:11
+FROM eclipse-temurin:17-jdk-alpine
 VOLUME /tmp
-EXPOSE 8080
-ARG JAR_FILE=target/spring-boot-docker.jar
-ADD ${JAR_FILE} PizzettAppBackEnd.jar
-ENTRYPOINT ["java","-jar","/PizzettAppBackEnd.jar"]
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
