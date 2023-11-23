@@ -15,7 +15,9 @@ public class SecurityConfig {
                     auth.requestMatchers("/pizzettApp/empleado/{email}").permitAll();
                     auth.anyRequest().authenticated();
                 })
-                .oauth2ResourceServer().jwt();
+                .oauth2ResourceServer().jwt()
+                .and()
+                .and().csrf().disable();
 
         return httpSecurity.build();
     }
