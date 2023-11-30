@@ -1,8 +1,12 @@
 package es.fjmarlop.PizzettAppBackEnd.Services;
 
+import es.fjmarlop.PizzettAppBackEnd.Entities.IngredienteEntity;
 import es.fjmarlop.PizzettAppBackEnd.Entities.ProductoEntity;
+import es.fjmarlop.PizzettAppBackEnd.Entities.TamanoEntity;
 import es.fjmarlop.PizzettAppBackEnd.Models.ProductoModel;
+import es.fjmarlop.PizzettAppBackEnd.Repositories.IngredienteRepository;
 import es.fjmarlop.PizzettAppBackEnd.Repositories.ProductoRepository;
+import es.fjmarlop.PizzettAppBackEnd.Repositories.TamanoRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
@@ -11,7 +15,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * Clase que representa el servicio de Productos.
+ * Las anotaciones Lombock ayudan a tener el código mas limpio.
+ * La anotación @Data nos implementa setters, getters, hasCode etc.
+ * la anotación @AllArgsConstructor nos implementa los contructores con todos los atributos de la clase.
+ */
 @Service
 @Data
 @AllArgsConstructor
@@ -19,6 +28,11 @@ public class ProductoService {
 
     @Autowired
     private final ProductoRepository productoRepository;
+
+    @Autowired
+    private final IngredienteRepository ingredienteRepository;
+    @Autowired
+    private final TamanoRepository tamanoRepository;
 
     @Autowired
     private final ModelMapper modelMapper;
@@ -49,14 +63,44 @@ public class ProductoService {
         return Mapper(productos);
     }
 
-
+    /**
+     * Recupera todos los productos para una categoría dada.
+     *
+     * @param  categoria  la categoría para la cual recuperar los productos
+     * @return            una lista de modelos de productos para la categoría dada
+     */
     public List<ProductoModel> getAllProductosPorCategoria(String categoria) {
         List<ProductoEntity> productos = productoRepository.getAllProductosPorCategoria(categoria);
         return Mapper(productos);
     }
 
+    /**
+     * Obtiene la lista de objetos ProductoModel para ser utilizados en las recomendaciones.
+     *
+     * @return  La lista de objetos ProductoModel.
+     */
     public List<ProductoModel> getProductosParaRecomendados(){
         List<ProductoEntity> productos = productoRepository.getProductosParaRecomendados();
         return Mapper(productos);
     }
+
+    // AL ESTAR RELACIONADOS VOY A TRATAR LOS INGREDIENTES DESDE AQUÍ,
+    // PARA FUTURAS VERSIONES SACAR DE ESTA CLASE PARA OFRECER UN CRUD DE INGREDIENTES.
+    /**
+     * Obtiene todos los ingredientes.
+     *
+     * @return  una lista de objetos IngredienteEntity que representan todos los ingredientes
+     */
+    public List<IngredienteEntity> getAllIngredientes() {
+        return (List<IngredienteEntity>) ingredienteRepository.findAll();
+    }
+    /**
+     * Recupera todos los objetos TamanoEntity de la base de datos.
+     *
+     * @return  una lista de objetos TamanoEntity
+     */
+    public List<TamanoEntity> getAllTamanos(){
+        return (List<TamanoEntity>) tamanoRepository.findAll();
+    }
+
 }

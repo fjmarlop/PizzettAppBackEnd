@@ -16,7 +16,7 @@ import java.util.Optional;
 
 /**
  * @author Fco Javier Marmolejo López
- * */
+ */
 
 @RestController
 @Data
@@ -32,21 +32,54 @@ public class ProductoController {
      * productos de la base de datos filtrado por categorias
      *
      * @return ResponseEntity<?>
-     *    Cuándo el listado esté vacío, retorna 404 not found.
-     * */
+     * Cuándo el listado esté vacío, retorna 404 not found.
+     */
     @GetMapping("/{cat}")
-    public ResponseEntity<?> getAllProductosByCategoria(@PathVariable String cat){
+    public ResponseEntity<?> getAllProductosByCategoria(@PathVariable String cat) {
         List<ProductoModel> list = productoService.getAllProductosPorCategoria(cat);
         return (list.isEmpty()) ? ResponseEntity.notFound().build() : ResponseEntity.of(Optional.of(list));
     }
 
+    /**
+     * Obtiene todos los productos.
+     *
+     * @return ResponseEntity que contiene todos los productos
+     */
     @GetMapping("/productos")
-    public ResponseEntity<?> getAllProductos(){
+    public ResponseEntity<?> getAllProductos() {
         return ResponseEntity.of(Optional.of(productoService.getAllProductos()));
     }
 
+    /**
+     * Recupera los productos recomendados.
+     *
+     * @return un ResponseEntity que contiene los productos recomendados
+     */
     @GetMapping("/recomendados")
-    public ResponseEntity<?> getProductosParaRecomendados(){
+    public ResponseEntity<?> getProductosParaRecomendados() {
         return ResponseEntity.of(Optional.of(productoService.getProductosParaRecomendados()));
+    }
+
+    // AL ESTAR RELACIONADOS VOY A TRATAR LOS INGREDIENTES DESDE AQUÍ,
+    // PARA FUTURAS VERSIONES SACAR DE ESTA CLASE PARA OFRECER UN CRUD DE INGREDIENTES.
+
+    /**
+     * Obtiene todos los ingredientes.
+     *
+     * @return ResponseEntity que contiene la lista de ingredientes
+     */
+    @GetMapping("/ingredientes")
+    public ResponseEntity<?> getAllIngredientes() {
+        return ResponseEntity.of(Optional.of(productoService.getAllIngredientes()));
+    }
+
+    /**
+     * Recupera todos los tamaños.
+     *
+     * @return una entidad de respuesta que contiene todos los tamaños
+     */
+    @GetMapping("/tamanos")
+    public ResponseEntity<?> getAllTamanos() {
+        return ResponseEntity.of(Optional.of(productoService.getAllTamanos()));
     }
 }
