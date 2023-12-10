@@ -11,9 +11,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 /**
  * Clase que representa el servicio de Productos.
@@ -103,4 +106,17 @@ public class ProductoService {
         return (List<TamanoEntity>) tamanoRepository.findAll();
     }
 
+
+    public ProductoEntity addProducto(ProductoEntity producto) {
+       return productoRepository.save(producto);
+    }
+
+    public ProductoEntity borrarProducto(Long id){
+        Optional<ProductoEntity> producto = this.productoRepository.findById(id);
+        if(producto.isPresent()){
+            this.productoRepository.deleteById(id);
+            return producto.get();
+        }
+        return null;
+    }
 }

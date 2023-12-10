@@ -1,15 +1,15 @@
 package es.fjmarlop.PizzettAppBackEnd.Controllers;
 
+import es.fjmarlop.PizzettAppBackEnd.Entities.IngredienteEntity;
+import es.fjmarlop.PizzettAppBackEnd.Entities.ProductoEntity;
+import es.fjmarlop.PizzettAppBackEnd.Entities.TamanoEntity;
 import es.fjmarlop.PizzettAppBackEnd.Models.ProductoModel;
 import es.fjmarlop.PizzettAppBackEnd.Services.ProductoService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -57,7 +57,8 @@ public class ProductoController {
      */
     @GetMapping("/recomendados")
     public ResponseEntity<?> getProductosParaRecomendados() {
-        return ResponseEntity.of(Optional.of(productoService.getProductosParaRecomendados()));
+        List<ProductoModel> list = productoService.getProductosParaRecomendados();
+        return (list.isEmpty()) ? ResponseEntity.notFound().build() : ResponseEntity.of(Optional.of(list));
     }
 
     // AL ESTAR RELACIONADOS VOY A TRATAR LOS INGREDIENTES DESDE AQUÍ,
@@ -70,7 +71,8 @@ public class ProductoController {
      */
     @GetMapping("/ingredientes")
     public ResponseEntity<?> getAllIngredientes() {
-        return ResponseEntity.of(Optional.of(productoService.getAllIngredientes()));
+        List<IngredienteEntity> list = productoService.getAllIngredientes();
+        return (list.isEmpty()) ? ResponseEntity.notFound().build() : ResponseEntity.of(Optional.of(list));
     }
 
     /**
@@ -80,6 +82,24 @@ public class ProductoController {
      */
     @GetMapping("/tamanos")
     public ResponseEntity<?> getAllTamanos() {
-        return ResponseEntity.of(Optional.of(productoService.getAllTamanos()));
+        List<TamanoEntity> list = productoService.getAllTamanos();
+        return (list.isEmpty()) ? ResponseEntity.notFound().build() : ResponseEntity.of(Optional.of(list));
+    }
+
+    /**
+     * Agrega un producto a la base de datos.
+     * @param producto que se va a agregar
+     * @return ResponseEntity con la respuesta de la Api con el producto
+     */
+    @PostMapping("/addProducto")
+    public ResponseEntity<?> addProducto(@RequestBody ProductoEntity producto) {
+       var prod = productoService.addProducto(producto);
+       return ResponseEntity.ok(prod);
+    }
+
+    @DeleteMapping("/borrarProducto/{id}")
+    public ResponseEntity<?> borrarProducto(@PathVariable Long id) {
+        var prod = productoService.borrarProducto(id);
+        return prod == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(prod);
     }
 }

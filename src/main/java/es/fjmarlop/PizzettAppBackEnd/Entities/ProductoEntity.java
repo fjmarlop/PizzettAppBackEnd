@@ -37,13 +37,13 @@ public class ProductoEntity {
 
     private String imagen_producto;
 
+    private String descripcion;
+
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = CategoriaEntity.class, cascade = CascadeType.ALL)
     @JoinTable(name = "Producto_Categoria",
             joinColumns = @JoinColumn(name = "productoID"),
             inverseJoinColumns = @JoinColumn(name = "categoriaID"))
     private Set<CategoriaEntity> categoria;
-
-    private String descripcion;
 
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = IngredienteEntity.class)
     @JoinTable(name = "Producto_Ingrediente",

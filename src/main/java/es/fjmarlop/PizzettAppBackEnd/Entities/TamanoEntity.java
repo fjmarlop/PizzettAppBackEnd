@@ -30,8 +30,7 @@ public class TamanoEntity {
     private Long id;
 
     @NotBlank
-    @Enumerated(EnumType.STRING)
-    private ETamano tamano;
+    private String tamano;
 
     private Double pvp;
 

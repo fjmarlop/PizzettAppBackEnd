@@ -27,9 +27,9 @@ public class EmpleadoController {
      * @return el ID del empleado si se encuentra, 0 en caso contrario
      */
     @GetMapping("/empleado/{email}")
-    public int consultarEmpleado(@PathVariable String email) {
-        if (email.isBlank() || email.isEmpty()) return 0;
-        return empleadoService.consultarEmpleado(email);
+    public ResponseEntity<Integer> consultarEmpleado(@PathVariable String email) {
+        int result = (email == null || email.isEmpty()) ? 0 : empleadoService.consultarEmpleado(email);
+        return result == 0 ? ResponseEntity.notFound().build() : ResponseEntity.of(Optional.of(result));
     }
 
     /**
